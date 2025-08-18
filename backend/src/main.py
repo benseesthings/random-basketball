@@ -1,14 +1,22 @@
 from fastapi import FastAPI
 from nba_api.stats.static import players
 from nba_api.stats.endpoints import playercareerstats
-import random
-
-DB_PATH = "data/nba.sqlite"
+from src import player as play
 
 app = FastAPI()
 
+all_players = players.get_players()
+
 @app.get("/player")
 def get_player():
-    all_players = players.get_players()
-    random_integer = random.randint(0, len(all_players))
-    return all_players[random_integer]["full_name"]
+    player = play.generate_random_player()
+    career = playercareerstats.PlayerCareerStats(player_id=player['id'])
+    points = play.player_points(career)
+    assists = play.player_assists(career)
+    years = play.years_played(career)
+    return {
+        "player": player['full_name'],
+        "points": points,
+        "assists": assists,
+        "years": years
+            }
