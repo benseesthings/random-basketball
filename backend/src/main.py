@@ -1,8 +1,9 @@
 from fastapi import FastAPI
 from nba_api.stats.static import players
 from nba_api.stats.endpoints import playercareerstats
-from src.openai_client import OpenAiClient
-from src.player import Player
+
+from src.openai_client import make_request
+from src.player import generate_random_player, years_played, player_assists, player_points
 
 app = FastAPI()
 
@@ -10,15 +11,13 @@ all_players = players.get_players()
 
 @app.get("/player")
 def get_player():
-    p = Player()
-    player = p.generate_random_player()
+    player = generate_random_player()
     career = playercareerstats.PlayerCareerStats(player_id=player['id'])
-    points = p.player_points(career)
-    assists = p.player_assists(career)
-    years = p.years_played(career)
+    points = player_points(career)
+    assists = player_assists(career)
+    years = years_played(career)
 
-    open_ai_client = OpenAiClient()
-    ai_response = open_ai_client.make_request(player['full_name'])
+    ai_response = make_request(player['full_name'])
 
     return {
         "player": player['full_name'],
