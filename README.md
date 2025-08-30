@@ -1,6 +1,10 @@
 # Random Basketball Player
 
-A simple FastAPI backend that returns random NBA players using [nba_api](https://github.com/swar/nba_api).
+A simple FastAPI backend that returns random NBA players using [nba_api](https://github.com/swar/nba_api). I did this because I
+wanted to get comfortable with using OpenAI's APIs as well as some other 
+stuff, including wikipedia API. 
+
+In order to run this correctly you'll need an OpenAI API key, which is not free. 
 
 ## Setup
 
@@ -10,6 +14,8 @@ git clone https://github.com/yourname/RandomBasketballPlayer.git
 cd RandomBasketballPlayer/backend
 ```
 
+
+## In backend
 ### Setup Virtual Env
 ```bash
 python3 -m venv .venv
@@ -29,4 +35,13 @@ uvicorn src.main:app --reload --port 8080
 
 The backend is live at http://127.0.0.1:8080
 
-Hit ```/player``` to receive one. 
+## In Frontend
+```bash
+npm install
+```
+
+```bash
+npm start
+```
+
+Hit the button on the screen to receive a player. 
