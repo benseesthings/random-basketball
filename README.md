@@ -4,7 +4,8 @@ A simple FastAPI backend that returns random NBA players using [nba_api](https:/
 wanted to get comfortable with using OpenAI's APIs as well as some other 
 stuff, including wikipedia API. 
 
-In order to run this correctly you'll need an OpenAI API key, which is not free. 
+In order to run this correctly you'll need an OpenAI API key, which is not free. If you don't have one, 
+it will just not serve the fun fact portion. 
 
 ## Setup
 
